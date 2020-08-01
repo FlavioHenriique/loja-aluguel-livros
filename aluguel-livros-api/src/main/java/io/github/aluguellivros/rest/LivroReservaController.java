@@ -1,0 +1,36 @@
+package io.github.aluguellivros.rest;
+
+import io.github.aluguellivros.entity.LivroReserva;
+import io.github.aluguellivros.service.LivroReservaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping(value = "/reserva")
+@CrossOrigin(origins = "*")
+public class LivroReservaController {
+
+    @Autowired
+    private LivroReservaService service;
+
+    @PostMapping
+    public ResponseEntity<Object> realizaReserva(@RequestBody LivroReserva reserva){
+        try {
+            reserva = service.realizaReserva(reserva);
+            return ResponseEntity.ok(reserva);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> cancelaReserva(@RequestParam long id){
+        try{
+            service.cancelaReserva(id);
+            return ResponseEntity.ok().build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+}
