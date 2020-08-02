@@ -1,0 +1,7 @@
+version: '2'
+services:
+    aluguel-livros-database:
+        image: aluguel-livros/database
+        build: ./database
+        ports: 
+            - 5433:5432        
