@@ -19,4 +19,4 @@ Após isso, irá criar dois containers Docker, um para o banco de dados e outro 
 Após isso, será construido o projeto do front-end com React, em seguida será executado.
 
 Para abrir o front-end, deve ser aberto o  seguinte host no browser:
-####localhost:3000
+localhost:3000
