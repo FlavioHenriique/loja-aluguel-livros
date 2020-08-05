@@ -11,31 +11,6 @@ function App() {
 
   return (
     <Tabs />
-    /*<Router>
-      <Route path="/" exact render={
-        () => {
-          return <CadastroLivro />;
-        }
-      }>
-
-      </Route>
-
-      <Route path="/cliente" exact render={
-        () => {
-          return <CadastroCliente />;
-        }
-      }>
-
-      </Route>
-
-      <Route path="/reserva" exact render={
-        () => {
-          return <ReservaLivro />;
-        }
-      }>
-
-      </Route>
-    </Router>*/
   );
 }
 

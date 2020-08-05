@@ -16,7 +16,7 @@ public class LivroReserva {
     @Id
     @GeneratedValue
     private long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Livro livro;
     @ManyToOne
     private Cliente cliente;

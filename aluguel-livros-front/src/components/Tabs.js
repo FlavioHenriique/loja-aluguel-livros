@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import CadastroLivro from './CadastroLivro';
 import CadastroCliente from './CadastroCliente';
 import ReservaLivro from './ReservaLivro';
+import AlugaLivro from './AlugaLivro';
 
 const Tabs = (props) => {
     const [activeTab, setActiveTab] = useState('1');
@@ -37,6 +38,14 @@ const Tabs = (props) => {
                         Reserva de Livros
                     </NavLink>
                 </NavItem>
+
+                <NavItem>
+                    <NavLink
+                        className={classnames({ active: activeTab === '2' })}
+                        onClick={() => { toggle('4'); }}>
+                        Aluguel de Livros
+                    </NavLink>
+                </NavItem>
             </Nav>
             <TabContent activeTab={activeTab}>
                 <TabPane tabId="1">
@@ -47,6 +56,9 @@ const Tabs = (props) => {
                 </TabPane>
                 <TabPane tabId="3">
                     <ReservaLivro />
+                </TabPane>
+                <TabPane tabId="4">
+                    <AlugaLivro />
                 </TabPane>
             </TabContent>
         </div>

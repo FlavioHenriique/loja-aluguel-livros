@@ -33,4 +33,13 @@ public class LivroAluguelController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping
+    public ResponseEntity<Object> listaTodos(){
+        try{
+            return ResponseEntity.ok(service.listaTodos());
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

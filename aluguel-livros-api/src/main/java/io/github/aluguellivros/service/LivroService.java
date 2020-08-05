@@ -20,6 +20,8 @@ public class LivroService {
                     || livro.getAnoPublicacao() == 0){
                 throw new Exception("É necessário preencher todos os dados para cadastar um livro.");
             }
+            if (livro.getId() == 0)
+                livro.setDisponivel(true);
             repository.save(livro);
             return livro;
         }catch (Exception e){

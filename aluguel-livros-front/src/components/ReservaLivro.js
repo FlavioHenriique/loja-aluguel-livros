@@ -20,7 +20,7 @@ export default class ReservaLivro extends React.Component {
             },
             quantidadeDeDias: 0,
             valor: 0.0,
-            dataReserva: null,
+            dataReserva: '',
             id: 0,
             listaReservas: []
         };
@@ -37,7 +37,7 @@ export default class ReservaLivro extends React.Component {
             },
             quantidadeDeDias: 0,
             valor: 0.0,
-            dataReserva: null,
+            dataReserva: '',
             id: 0
         });
     }
@@ -80,7 +80,6 @@ export default class ReservaLivro extends React.Component {
     }
 
     salvar() {
-        console.log("salvando: " + JSON.stringify(this.state));
         axios.post(url, this.state)
             .then(res => {
                 this.setState(res.data);
@@ -170,7 +169,6 @@ export default class ReservaLivro extends React.Component {
                                 <th>Id Cliente</th>
                                 <th>Id livro</th>
                                 <th>Deletar</th>
-                                <th>Atualizar</th>
                             </tr>
                         </thead>
                         {
@@ -180,8 +178,7 @@ export default class ReservaLivro extends React.Component {
                                         <td>{reserva.id}</td>
                                         <td>{reserva.cliente.id}</td>
                                         <td>{reserva.livro.id}</td>
-                                        <td><Button color="danger" onClick={() => this.deletar(reserva.id)}>Deletar</Button></td>
-                                        <td><Button color="primary" onClick={() => this.atualizar(reserva)}>Atualizar</Button></td>
+                                        <td><Button color="danger" onClick={() => this.deletar(reserva.id)}>Cancela reserva</Button></td>
                                     </tr>
                                 </tbody>;
                             })

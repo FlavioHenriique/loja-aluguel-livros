@@ -17,4 +17,5 @@ public class Livro {
     private String nome;
     private String nomeAutor;
     private int anoPublicacao;
+    private boolean disponivel;
 }

@@ -7,6 +7,7 @@ import io.github.aluguellivros.repository.LivroReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,17 @@ public class LivroReservaService {
         if (livro == null)
             throw new Exception("Livro não encontrado para a reserva");
 
+        if (!livro.isDisponivel())
+            throw new Exception("Este livro não está disponível para reserva");
+
+        if (reserva.getDataReserva().compareTo(LocalDate.now()) <=0)
+            throw new Exception("Data para reserva inválida");
+
+        livro.setDisponivel(false);
+        livroService.salvar(livro);
+
+        reserva.setLivro(livro);
+
         repository.save(reserva);
         return reserva;
     }
@@ -43,6 +55,9 @@ public class LivroReservaService {
         if (reserva == null)
             throw new Exception("Reserva não encontrada com id " + id);
         repository.delete(reserva);
+        Livro livro = livroService.buscar(reserva.getLivro().getId());
+        livro.setDisponivel(true);
+        livroService.salvar(livro);
     }
 
     public List<LivroReserva> listar() throws Exception {
