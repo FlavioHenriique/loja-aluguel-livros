@@ -44,7 +44,7 @@ export default class CadastroLivro extends React.Component {
                 })
                 .catch(err => {
                     alert(err.response.data);
-                })
+                });
         } else {
             // Caso não possua id, deve criar um novo registro
             axios.post(url, this.state)
@@ -90,6 +90,7 @@ export default class CadastroLivro extends React.Component {
     render() {
         return (
             <div>
+
                 <h3>Cadastro de Livro</h3>
                 <form className="form-group col-md-8">
                     <input
@@ -127,6 +128,7 @@ export default class CadastroLivro extends React.Component {
                 <table className="table col-md-8">
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Nome</th>
                             <th>Nome Autor</th>
                             <th>Deletar</th>
@@ -137,6 +139,7 @@ export default class CadastroLivro extends React.Component {
                         this.state.listaLivros.map((livro) => {
                             return <tbody key={livro.id}>
                                 <tr>
+                                    <td>{livro.id}</td>
                                     <td>{livro.nome}</td>
                                     <td>{livro.nomeAutor}</td>
                                     <td><Button color="danger" onClick={() => this.deletar(livro.id)}>Deletar</Button></td>

@@ -6,6 +6,8 @@ import io.github.aluguellivros.entity.LivroReserva;
 import io.github.aluguellivros.repository.LivroReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,5 +43,13 @@ public class LivroReservaService {
         if (reserva == null)
             throw new Exception("Reserva não encontrada com id " + id);
         repository.delete(reserva);
+    }
+
+    public List<LivroReserva> listar() throws Exception {
+        try{
+            return repository.findAll();
+        }catch (Exception e){
+            throw new Exception("Erro ao listar reservas: " + e.getMessage());
+        }
     }
 }

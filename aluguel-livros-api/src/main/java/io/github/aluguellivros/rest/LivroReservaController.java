@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/reserva")
 @CrossOrigin(origins = "*")
@@ -29,6 +31,16 @@ public class LivroReservaController {
         try{
             service.cancelaReserva(id);
             return ResponseEntity.ok().build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<Object> listarTodos(){
+        try{
+            List<LivroReserva> lista = service.listar();
+            return ResponseEntity.ok(lista);
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

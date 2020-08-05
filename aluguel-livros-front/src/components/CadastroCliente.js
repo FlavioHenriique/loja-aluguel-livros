@@ -19,12 +19,12 @@ export default class CadastroCliente extends React.Component {
     }
 
     limpaStateCliente() {
-        this.state = {
+        this.setState({
             nome: '',
             idade: 0,
             sexo: '',
             id: 0
-        };
+        });
     }
 
     changeHandler = e => {
@@ -88,7 +88,9 @@ export default class CadastroCliente extends React.Component {
     render() {
         return (
             <div>
+
                 <h3>Cadastro de cliente</h3>
+
                 <form className="form-group col-md-8">
                     <input
                         type="text"
@@ -124,6 +126,7 @@ export default class CadastroCliente extends React.Component {
                 <table className="table col-md-8">
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Nome</th>
                             <th>Idade</th>
                             <th>Deletar</th>
@@ -134,6 +137,7 @@ export default class CadastroCliente extends React.Component {
                         this.state.listaClientes.map((cliente) => {
                             return <tbody key={cliente.id}>
                                 <tr>
+                                    <td>{cliente.id}</td>
                                     <td>{cliente.nome}</td>
                                     <td>{cliente.idade}</td>
                                     <td><Button color="danger" onClick={() => this.deletar(cliente.id)}>Deletar</Button></td>
