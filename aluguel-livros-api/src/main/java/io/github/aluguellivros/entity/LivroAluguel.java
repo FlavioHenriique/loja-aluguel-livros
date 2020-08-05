@@ -24,4 +24,5 @@ public class LivroAluguel {
     private Livro livro;
     private LocalDate data;
     private BigDecimal valor;
+    private int diasDeUso;
 }

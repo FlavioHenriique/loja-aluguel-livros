@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Button } from 'reactstrap';
 
-const url = 'http://localhost:8080/aluguel';
+const url = 'http://localhost:8081/aluguel';
 
 export default class AlugaLivro extends React.Component {
 
@@ -17,6 +17,7 @@ export default class AlugaLivro extends React.Component {
             },
             valor: 0.0,
             id: 0,
+            dias: 0,
             listaAlugueis: []
         };
         this.listaAlugueis();
@@ -31,7 +32,8 @@ export default class AlugaLivro extends React.Component {
                 id: 0
             },
             valor: 0.0,
-            id: 0
+            id: 0,
+            dias: 0
         });
     }
 
@@ -117,6 +119,15 @@ export default class AlugaLivro extends React.Component {
                         onChange={this.livroChangeHandler.bind(this)}
                     />
 
+                    <label htmlFor="dias">Quantidade de dias de uso</label>
+                    <input
+                        className="form-control"
+                        type="number"
+                        name="dias"
+                        value={this.state.dias}
+                        onChange={this.changeHandler.bind(this)}
+                    />
+
                     <label htmlFor="valor">Valor do aluguel</label>
                     <input
                         className="form-control"
@@ -149,7 +160,7 @@ export default class AlugaLivro extends React.Component {
                                     <td>{aluguel.id}</td>
                                     <td>{aluguel.cliente.id}</td>
                                     <td>{aluguel.livro.id}</td>
-                                    <td><Button color="danger" onClick={() => this.deletar(aluguel.id)}>Cancela aluguel</Button></td>
+                                    <td><Button color="danger" onClick={() => this.deletar(aluguel.id)}>Devolve livro</Button></td>
                                 </tr>
                             </tbody>;
                         })

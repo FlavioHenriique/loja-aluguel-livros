@@ -42,4 +42,13 @@ public class LivroAluguelController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("dashboard")
+    public ResponseEntity<Object> dashboardSemanal(){
+        try{
+            return ResponseEntity.ok(service.listaPeriodoSemanal());
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

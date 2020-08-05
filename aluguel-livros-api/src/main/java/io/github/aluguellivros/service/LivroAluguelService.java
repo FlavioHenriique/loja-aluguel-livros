@@ -4,12 +4,15 @@ import io.github.aluguellivros.entity.Cliente;
 import io.github.aluguellivros.entity.Livro;
 import io.github.aluguellivros.entity.LivroAluguel;
 import io.github.aluguellivros.repository.LivroAluguelRepository;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.time.temporal.ChronoUnit;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LivroAluguelService {
@@ -46,10 +49,21 @@ public class LivroAluguelService {
         if (!optional.isPresent())
             return;
         LivroAluguel livroAluguel = optional.get();
+        Livro livro = livroService.buscar(livroAluguel.getLivro().getId());
+        livro.setDisponivel(true);
+        livroService.salvar(livro);
         repository.delete(livroAluguel);
     }
 
     public List<LivroAluguel> listaTodos(){
         return repository.findAll();
+    }
+
+    public List<LivroAluguel> listaPeriodoSemanal(){
+        List<LivroAluguel> lista = listaTodos();
+        return lista
+                .stream()
+                .filter(l -> ChronoUnit.DAYS.between(l.getData(), LocalDate.now()) <= l.getDiasDeUso())
+                .collect(Collectors.toList());
     }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Button } from 'reactstrap';
 
-const url = 'http://localhost:8080/livro';
+const url = 'http://localhost:8081/livro';
 
 export default class CadastroLivro extends React.Component {
 

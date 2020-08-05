@@ -4,4 +4,14 @@ services:
         image: aluguel-livros/database
         build: ./database
         ports: 
-            - 5433:5432        
+            - 5433:5432
+
+    aluguel-livros-api:
+        image: aluguel-livros/api
+        build: ./aluguel-livros-api
+        ports:
+            - 8081:8080
+        links:
+            - "aluguel-livros-database:host-database"
+        depends_on: 
+            - aluguel-livros-database
